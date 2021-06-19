@@ -8,12 +8,14 @@
   top: $header-height + $toolbar-height + $formula-height;
   overflow-x: auto;
   padding-bottom: 2px;
+
   .row {
     display: flex;
     flex-direction: row;
     min-height: 20px;
     height: $row-height;
   }
+
   .row-info {
     display: flex;
     justify-content: center;
@@ -23,10 +25,13 @@
     border: 1px solid $border-color;
     background: #f8f9fa;
     border-top: none;
+    position: relative;
   }
+
   .row-data {
     display: flex;
   }
+
   .column {
     display: flex;
     justify-content: center;
@@ -38,7 +43,9 @@
     border-top: none;
     border-left: none;
     height: 100%;
+    position: relative;
   }
+
   .cell {
     min-width: 40px;
     padding: 5px;
@@ -50,10 +57,40 @@
     outline: none;
     color: #111;
     white-space: nowrap;
+
     &.selected {
       border: none;
-      outline: 2px solid #3c74ff;
+      outline: 2px solid $primary-color;
       z-index: 2;
     }
   }
+
+  .col-resize, .row-resize {
+    position: absolute;
+    background: $primary-color;
+    opacity: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 1000;
+    &:hover {
+      opacity: 1!important;
+    }
+  }
+
+  .col-resize {
+    width: 3px;
+    top: 0;
+    &:hover {
+      cursor: col-resize;
+    }
+  }
+
+  .row-resize {
+    height: 3px;
+    left: 0;
+    &:hover {
+      cursor: row-resize;
+    }
+  }
+
 }
