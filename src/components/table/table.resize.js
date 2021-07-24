@@ -22,12 +22,6 @@ export function resizeHandler($root, event) {
             $resizer.css({
                 right: -delta + 'px',
             })
-            // $parent.$el.style.width = value + 'px'
-            // $parent.css({width: value + 'px'})
-            // cells
-            //     .forEach(el => {
-            //         el.style.width = value + 'px'
-            //     })
         } else {
             const delta = e.pageY - coords.bottom
             value = coords.height + delta

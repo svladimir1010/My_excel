@@ -12,6 +12,18 @@ class Dom {
             return this
         }
         return this.$el.outerHTML.trim()
+        // return this.$el.innerHTML.trim()
+    }
+
+    text(text) {
+        if (typeof text === 'string') {
+            this.$el.textContent = text
+            return this
+        }
+        if (this.$el.tagName.toLowerCase() === 'input') {
+            return this.$el.value.trim()
+        }
+        return this.$el.textContent.trim()
     }
 
     clear() {
@@ -56,12 +68,41 @@ class Dom {
         return this.$el.querySelectorAll(selector)
     }
 
+    find(selector) {
+        return $(this.$el.querySelector(selector))
+    }
+
+    addClass(className) {
+        this.$el.classList.add(className)
+        return this
+    }
+
+    removeClass(className) {
+        this.$el.classList.remove(className)
+        return this
+    }
+
+    id(parse) {
+        if (parse) {
+            const parsed = this.id().split(':')
+            return {
+                row: +parsed[0],
+                col: +parsed[1]
+            }
+        }
+        return this.data.id
+    }
+
+    focus() {
+        this.$el.focus()
+        return this
+    }
+
     css(styles = {}) {
         // eslint-disable-next-line
 
         // for (const key in styles) {
         //     if (styles.hasOwnProperty(key)) {
-        //         console.log(key)
         //         console.log(styles[key])
         // this.$el.style[key] = styles[key]
         //     }
@@ -74,6 +115,7 @@ class Dom {
             })
     }
 }
+
 
 // $('div').html(<h1>Test</h1>).clear()
 
